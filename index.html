@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaf Green Logistics</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f6f8;
+    color:#333;
+}
+
+header{
+    background:#0a2540;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    background:linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    color:white;
+    text-align:center;
+    padding:150px 20px;
+}
+
+.btn{
+    background:#ff7a00;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.section{
+    padding:70px 20px;
+    text-align:center;
+}
+
+.services{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-top:30px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    width:260px;
+    border-radius:10px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+input, select, textarea{
+    padding:10px;
+    width:100%;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.form-box{
+    max-width:500px;
+    margin:30px auto;
+}
+
+#result, #allShipments{
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.footer{
+    background:#0a2540;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>Leaf Green Logistics 🍀</h2>
+<nav>
+<a href="#services">Services</a>
+<a href="#booking">Book</a>
+<a href="#tracking">Track</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Fast & Reliable Global Logistics</h1>
+<p>Book and Track Shipments Instantly</p>
+</section>
+
+<section class="section" id="services">
+<h2>Our Services</h2>
+<div class="services">
+<div class="card">
+<h3>🚛 Road Freight</h3>
+<p>Domestic and cross-border trucking solutions.</p>
+</div>
+<div class="card">
+<h3>✈️ Air Cargo</h3>
+<p>Fast international air freight services.</p>
+</div>
+<div class="card">
+<h3>🚢 Sea Freight</h3>
+<p>Cost-effective global ocean shipping.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="booking">
+<h2>Book a Shipment</h2>
+<div class="form-box">
+<input type="text" id="customerName" placeholder="Customer Name">
+<select id="serviceType">
+<option value="">Select Service</option>
+<option>Road Freight</option>
+<option>Air Cargo</option>
+<option>Sea Freight</option>
+</select>
+<input type="text" id="destination" placeholder="Destination">
+<button class="btn" onclick="bookShipment()">Book Shipment</button>
+<div id="bookingResult"></div>
+</div>
+</section>
+
+<section class="section" id="tracking">
+<h2>Track Shipment</h2>
+<div class="form-box">
+<input type="text" id="trackingInput" placeholder="Enter Tracking Number">
+<button class="btn" onclick="trackShipment()">Track</button>
+<div id="result"></div>
+</div>
+
+<h3>All Shipments</h3>
+<div id="allShipments"></div>
+</section>
+
+<footer class="footer">
+© 2026 Leaf Green Logistics | Demo Logistics System
+</footer>
+
+<script>
+let shipments = [];
+
+function generateTrackingNumber(){
+    return "LG" + Math.floor(100000 + Math.random() * 900000);
+}
+
+function bookShipment(){
+    const name = document.getElementById("customerName").value.trim();
+    const service = document.getElementById("serviceType").value;
+    const destination = document.getElementById("destination").value.trim();
+    const result = document.getElementById("bookingResult");
+
+    if(!name || !service || !destination){
+        result.style.color = "red";
+        result.innerHTML = "Please fill all fields.";
+        return;
+    }
+
+    const trackingNumber = generateTrackingNumber();
+
+    const shipment = {
+        trackingNumber,
+        name,
+        service,
+        destination,
+        status: "Processing"
+    };
+
+    shipments.push(shipment);
+
+    result.style.color = "green";
+    result.innerHTML = 
+        "Shipment Booked! Tracking Number: <strong>" + trackingNumber + "</strong>";
+
+    displayShipments();
+
+    document.getElementById("customerName").value="";
+    document.getElementById("serviceType").value="";
+    document.getElementById("destination").value="";
+}
+
+function trackShipment(){
+    const trackingInput = document.getElementById("trackingInput").value.trim().toUpperCase();
+    const result = document.getElementById("result");
+
+    const shipment = shipments.find(s => s.trackingNumber === trackingInput);
+
+    if(shipment){
+        result.style.color="green";
+        result.innerHTML = 
+        "Status: " + shipment.status + "<br>" +
+        "Service: " + shipment.service + "<br>" +
+        "Destination: " + shipment.destination;
+    } else {
+        result.style.color="red";
+        result.innerHTML = "Tracking number not found.";
+    }
+}
+
+function displayShipments(){
+    const container = document.getElementById("allShipments");
+    container.innerHTML = "";
+
+    shipments.forEach(s => {
+        container.innerHTML += 
+        "<div style='margin:10px; padding:10px; background:#fff; border-radius:6px;'>"+
+        "<strong>"+ s.trackingNumber +"</strong> | " +
+        s.name + " | " +
+        s.service + " | " +
+        s.destination + " | " +
+        s.status +
+        "</div>";
+    });
+}
+</script>
+
+</body>
+</html>
