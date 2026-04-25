@@ -3,238 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leaf Green Logistics</title>
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background:#f4f6f8;
-    color:#333;
-}
+<title>Property Circle</title>
 
-header{
-    background:#0a2540;
-    color:white;
-    padding:20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.hero{
-    background:linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-    url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-    color:white;
-    text-align:center;
-    padding:150px 20px;
-}
-
-.btn{
-    background:#ff7a00;
-    color:white;
-    padding:12px 20px;
-    border:none;
-    cursor:pointer;
-    border-radius:5px;
-}
-
-.section{
-    padding:70px 20px;
-    text-align:center;
-}
-
-.services{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:30px;
-    margin-top:30px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    width:260px;
-    border-radius:10px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.08);
-}
-
-input, select, textarea{
-    padding:10px;
-    width:100%;
-    margin:8px 0;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
-
-.form-box{
-    max-width:500px;
-    margin:30px auto;
-}
-
-#result, #allShipments{
-    margin-top:20px;
-    font-weight:bold;
-}
-
-.footer{
-    background:#0a2540;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-<h2>Leaf Green Logistics 🍀</h2>
-<nav>
-<a href="#services">Services</a>
-<a href="#booking">Book</a>
-<a href="#tracking">Track</a>
-</nav>
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2>Property Circle</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="listings.html">Listings</a>
+        <a href="agents.html">Agents</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <button class="btn">Login</button>
+        <button class="btn dark">Sign Up</button>
+    </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-<h1>Fast & Reliable Global Logistics</h1>
-<p>Book and Track Shipments Instantly</p>
+
+<div class="hero-text">
+    <h1>Find Your Perfect Property with Property Circle</h1>
+    <p>Buy, rent or sell properties easily and connect with trusted agents.</p>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab(event, 'buy')">Buy</button>
+<button class="tab" onclick="switchTab(event, 'rent')">Rent</button>
+<button class="tab" onclick="switchTab(event, 'sold')">Sold</button>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+        <input type="text" placeholder="Enter location">
+        <select>
+            <option>Property Type</option>
+            <option>House</option>
+            <option>Apartment</option>
+        </select>
+        <input type="number" placeholder="Min Price">
+        <input type="number" placeholder="Max Price">
+        <a href="search.html" class="btn dark">Search</a>
+    </div>
+</div>
+
+<div class="hero-image"></div>
+
 </section>
 
-<section class="section" id="services">
-<h2>Our Services</h2>
-<div class="services">
-<div class="card">
-<h3>🚛 Road Freight</h3>
-<p>Domestic and cross-border trucking solutions.</p>
-</div>
-<div class="card">
-<h3>✈️ Air Cargo</h3>
-<p>Fast international air freight services.</p>
-</div>
-<div class="card">
-<h3>🚢 Sea Freight</h3>
-<p>Cost-effective global ocean shipping.</p>
-</div>
+<!-- CATEGORIES -->
+<section class="categories">
+<h3>Browse by Category</h3>
+
+<div class="category-grid">
+    <div class="category">Apartments</div>
+    <div class="category">Houses</div>
+    <div class="category">Land</div>
+    <div class="category">Commercial</div>
 </div>
 </section>
 
-<section class="section" id="booking">
-<h2>Book a Shipment</h2>
-<div class="form-box">
-<input type="text" id="customerName" placeholder="Customer Name">
-<select id="serviceType">
-<option value="">Select Service</option>
-<option>Road Freight</option>
-<option>Air Cargo</option>
-<option>Sea Freight</option>
-</select>
-<input type="text" id="destination" placeholder="Destination">
-<button class="btn" onclick="bookShipment()">Book Shipment</button>
-<div id="bookingResult"></div>
+<!-- FEATURED -->
+<section class="featured">
+
+<div class="featured-header">
+    <h3>Featured Properties</h3>
+    <a href="#">View All</a>
+</div>
+
+<div class="property-grid">
+
+<div class="property-card">
+    <div class="property-img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1175&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+    <div class="property-info">
+        <h4>Modern Apartment</h4>
+        <p>Gaborone</p>
+        <strong>P 3,200,000</strong>
+    </div>
+</div>
+
+<div class="property-card">
+    <div class="property-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994')"></div>
+    <div class="property-info">
+        <h4>3 Bed House</h4>
+        <p>Francistown</p>
+        <strong>P 1,200,000</strong>
+    </div>
+</div>
+
+<div class="property-card">
+    <div class="property-img" style="background-image:url('https://plus.unsplash.com/premium_photo-1663090742758-f3d54430d4eb?q=80&w=1175&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D     ')"></div>
+    <div class="property-info">
+        <h4>Office Space</h4>
+        <p>Gaborone CBD</p>
+        <strong>P 2,300,000</strong>
+    </div>
+</div>
+
+<div class="property-card">
+    <div class="property-img" style="background-image:url('https://images.unsplash.com/photo-1603165022668-8502a0277471?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+    <div class="property-info">
+        <h4>Vacant Land</h4>
+        <p>Mochudi</p>
+        <strong>P 450,000</strong>
+    </div>
+</div>
+
 </div>
 </section>
 
-<section class="section" id="tracking">
-<h2>Track Shipment</h2>
-<div class="form-box">
-<input type="text" id="trackingInput" placeholder="Enter Tracking Number">
-<button class="btn" onclick="trackShipment()">Track</button>
-<div id="result"></div>
-</div>
-
-<h3>All Shipments</h3>
-<div id="allShipments"></div>
+<!-- CTA -->
+<section class="cta">
+    <p>List Your Property with Us</p>
+    <button class="btn dark">Get Started</button>
 </section>
 
-<footer class="footer">
-© 2026 Leaf Green Logistics | Demo Logistics System
-</footer>
-
+<script src="script.js"></script>
 <script>
-let shipments = [];
+   let currentTab = "buy";
 
-function generateTrackingNumber(){
-    return "LG" + Math.floor(100000 + Math.random() * 900000);
+function switchTab(event, tab) {
+    currentTab = tab;
+
+    // Update active tab UI
+    document.querySelectorAll(".tab").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    event.target.classList.add("active");
+
+    // Update placeholder dynamically
+    const searchBox = document.querySelector(".search-box input");
+
+    if (tab === "buy") {
+        searchBox.placeholder = "Search properties to buy...";
+    } else if (tab === "rent") {
+        searchBox.placeholder = "Search rental properties...";
+    } else {
+        searchBox.placeholder = "Search sold properties...";
+    }
 }
 
-function bookShipment(){
-    const name = document.getElementById("customerName").value.trim();
-    const service = document.getElementById("serviceType").value;
-    const destination = document.getElementById("destination").value.trim();
-    const result = document.getElementById("bookingResult");
+/* SEARCH BUTTON DEMO FUNCTION */
+document.querySelector(".search-box button").addEventListener("click", () => {
+    const location = document.querySelector(".search-box input").value;
 
-    if(!name || !service || !destination){
-        result.style.color = "red";
-        result.innerHTML = "Please fill all fields.";
+    if (location === "") {
+        alert("Please enter a location");
         return;
     }
 
-    const trackingNumber = generateTrackingNumber();
-
-    const shipment = {
-        trackingNumber,
-        name,
-        service,
-        destination,
-        status: "Processing"
-    };
-
-    shipments.push(shipment);
-
-    result.style.color = "green";
-    result.innerHTML = 
-        "Shipment Booked! Tracking Number: <strong>" + trackingNumber + "</strong>";
-
-    displayShipments();
-
-    document.getElementById("customerName").value="";
-    document.getElementById("serviceType").value="";
-    document.getElementById("destination").value="";
-}
-
-function trackShipment(){
-    const trackingInput = document.getElementById("trackingInput").value.trim().toUpperCase();
-    const result = document.getElementById("result");
-
-    const shipment = shipments.find(s => s.trackingNumber === trackingInput);
-
-    if(shipment){
-        result.style.color="green";
-        result.innerHTML = 
-        "Status: " + shipment.status + "<br>" +
-        "Service: " + shipment.service + "<br>" +
-        "Destination: " + shipment.destination;
-    } else {
-        result.style.color="red";
-        result.innerHTML = "Tracking number not found.";
-    }
-}
-
-function displayShipments(){
-    const container = document.getElementById("allShipments");
-    container.innerHTML = "";
-
-    shipments.forEach(s => {
-        container.innerHTML += 
-        "<div style='margin:10px; padding:10px; background:#fff; border-radius:6px;'>"+
-        "<strong>"+ s.trackingNumber +"</strong> | " +
-        s.name + " | " +
-        s.service + " | " +
-        s.destination + " | " +
-        s.status +
-        "</div>";
-    });
-}
+    alert(`Searching for ${currentTab} properties in ${location}`);
+});
 </script>
 
 </body>
